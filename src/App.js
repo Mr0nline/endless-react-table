@@ -1,6 +1,19 @@
 import './App.css';
 import { ERTable } from "./lib";
 
+const columns = [{
+  name: 'ABC',
+}, {
+  name: 'XYZ',
+}]
+
+const rows = []
+for (let i = 0; i < 100; i++) {
+  rows.push({
+    name: `Row ${i}`,
+  })
+}
+
 function App() {
   return (
     <div className="App">
@@ -8,15 +21,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <ERTable label="Hello!" />
+        <ERTable columns={columns} rows={rows} rowHeight={30} lines={15}/>
       </header>
     </div>
   );
