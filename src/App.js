@@ -8,7 +8,7 @@ const columns = [{
 }]
 
 const rows = []
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 10000; i++) {
   rows.push({
     name: `Row ${i}`,
   })
