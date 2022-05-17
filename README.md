@@ -1,5 +1,7 @@
 # Take your table to the next level, Virtually!
 
+- **NOTE**: *This package is still WIP and is not stable right now. Good things will come and they worth the wait. Please keep an eye on the repo for updates.*
+
 A react component that allows you to create a table aimed for really big data. Though it is not a full featured table, it is a good starting point for your own table.
 
 Uses react's virtual DOM heavily to give you a fast and efficient way to create a table and scroll around it without having to worry about the DOM.
