@@ -1,10 +1,27 @@
 {
-  "name": "endless-react-table",
-  "version": "0.1.3",
+  "name": "virtual-react-table",
+  "version": "0.1.4",
   "private": false,
+  "description": "Take your table to the next level, Virtually! A react component that allows you to create a table aimed for really big data.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mr0nline/endless-react-table.git"
+  },
+  "keywords": ["react", "table", "react-table", "virtual", "virtual-dom", "endless", "endless-scroll"],
+  "homepage": "https://github.com/Mr0nline/endless-react-table#readme",
+  "bugs": {
+    "url": "https://github.com/Mr0nline/endless-react-table/issues",
+    "email": "mronlinesworld@gmail.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Mr0nline",
+    "email": "mronlinesworld@gmail.com",
+    "url": "https://github.com/Mr0nline"
+  },
+  "funding": {
+    "type": "coffee",
+    "url": "https://www.buymeacoffee.com/mronline"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
