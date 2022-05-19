@@ -1,6 +1,6 @@
 {
   "name": "virtual-react-table",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "description": "Take your table to the next level, Virtually! A react component that allows you to create a table aimed for really big data.",
   "repository": {
