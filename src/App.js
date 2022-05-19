@@ -1,5 +1,5 @@
-import './App.css';
-import { ERTable } from "./lib";
+import './App.css'
+import { ERTable } from './lib'
 
 const columns = [{
   name: 'Column 1',
@@ -7,10 +7,10 @@ const columns = [{
   styles: {
     textAlign: 'center',
     header: {
-      textAlign: 'right',
+      textAlign: 'right'
     },
     footer: {
-      textAlign: 'right',
+      textAlign: 'right'
     }
   }
 }, {
@@ -21,18 +21,18 @@ const columns = [{
 const rows = []
 for (let i = 0; i < 10000; i++) {
   rows.push({
-    name: `Row ${i}`,
+    name: `Row ${i}`
   })
 }
 
-function App() {
+function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <ERTable columns={columns} rows={rows} rowHeight={30} lines={15} header={true} footer={true}/>
+    <div className='App'>
+      <header className='App-header'>
+        <ERTable columns={columns} rows={rows} rowHeight={30} lines={15} header footer />
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
