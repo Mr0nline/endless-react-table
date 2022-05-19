@@ -8,7 +8,7 @@
     "url": "git+https://github.com/Mr0nline/endless-react-table.git"
   },
   "keywords": ["react", "table", "react-table", "virtual", "virtual-dom", "endless", "endless-scroll"],
-  "homepage": "https://github.com/Mr0nline/endless-react-table#readme",
+  "homepage": "/",
   "bugs": {
     "url": "https://github.com/Mr0nline/endless-react-table/issues",
     "email": "mronlinesworld@gmail.com"

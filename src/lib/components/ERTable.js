@@ -1,17 +1,58 @@
 import React, { useMemo } from 'react'
 import useScrollPercentage from "./useScrollPercentage";
 
-const ERTable = ({ columns, rows, rowHeight, lines, ...props }) => {
+const ERTable = ({ columns, rows, rowHeight, lines, header = true, footer = false, ...props }) => {
   const [scrollRef, scrollPercentage] = useScrollPercentage()
+  const memoizedColumns = useMemo(() => columns, [columns])
+
+  const memoizedHeader = useMemo(() => {
+    if (!header) return null
+    return (
+      <thead style={{ position: 'sticky', background: 'white', top: 0 }}>
+      <tr>
+        {
+          memoizedColumns.map((column, index) => {
+            return <th key={`virtual-header-${index}`} style={{
+              maxHeight: `${rowHeight}px`,
+              width: column.width || 50, ...(column?.styles || {}), ...(column?.styles?.header || {})
+            }}>{column?.name}</th>
+          })
+        }
+      </tr>
+      </thead>
+    )
+  }, [header, memoizedColumns, rowHeight])
 
   const memoizedRows = useMemo(() => {
-    return rows.map((row, index) => <tr key={`endless-row-${index}`} style={{
+    return rows.map((row, index) => <tr key={`virtual-row-${index}`} style={{
       maxHeight: rowHeight,
       background: "#" + ((1 << 24) * Math.random() | 0).toString(16)
     }}>
-      <td style={{ maxHeight: `${rowHeight}px` }}>{row.name}</td>
+      {
+        memoizedColumns.map((column, cellIndex) => {
+          return <td key={`virtual-row-cell-${cellIndex}`}
+                     style={{ maxHeight: `${rowHeight}px`, width: column.width || 50 }}>{row?.name}</td>
+        })
+      }
     </tr>)
-  }, [rows, rowHeight])
+  }, [rows, rowHeight, memoizedColumns])
+
+  const memoizedFooter = useMemo(() => {
+    if (!footer) return null
+    return <tfoot style={{ position: 'sticky', background: 'white', bottom: 0 }}>
+    <tr>
+      {
+        memoizedColumns.map((column, index) => {
+          return <td key={`virtual-footer-${index}`} style={{
+            maxHeight: `${rowHeight}px`,
+            width: column.width || 50, ...(column?.styles || {}), ...(column?.styles?.footer || {})
+          }}>{column?.name}</td>
+        })
+      }</tr>
+    </tfoot>
+  }, [footer, rowHeight, memoizedColumns])
+
+
   const renderedRows = useMemo(() => {
     const perc = scrollPercentage / 100
     let max = Math.ceil(rows.length * perc)
@@ -29,7 +70,7 @@ const ERTable = ({ columns, rows, rowHeight, lines, ...props }) => {
       min -= tenPercent
     }
     return memoizedRows.slice(min, max)
-  }, [lines, memoizedRows, scrollPercentage])
+  }, [rows, lines, memoizedRows, scrollPercentage])
 
   const aboveLength = scrollPercentage * rowHeight * (rows.length - lines) / 100
   const belowLength = (rowHeight * (rows.length - lines)) - aboveLength
@@ -37,6 +78,8 @@ const ERTable = ({ columns, rows, rowHeight, lines, ...props }) => {
   return (
     <div style={{ maxHeight: `${rowHeight * lines}px`, overflow: 'auto' }} ref={scrollRef}>
       <table>
+        {memoizedHeader}
+        <tbody style={{ maxHeight: `${rowHeight * memoizedRows.length}px` }}>
         <tr style={{
           height: `${aboveLength}px`,
           visibility: 'hidden',
@@ -50,6 +93,8 @@ const ERTable = ({ columns, rows, rowHeight, lines, ...props }) => {
         }}>
           <td>Hidden</td>
         </tr>
+        </tbody>
+        {memoizedFooter}
       </table>
     </div>
   )

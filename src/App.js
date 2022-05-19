@@ -2,9 +2,20 @@ import './App.css';
 import { ERTable } from "./lib";
 
 const columns = [{
-  name: 'ABC',
+  name: 'Column 1',
+  width: 100,
+  styles: {
+    textAlign: 'center',
+    header: {
+      textAlign: 'right',
+    },
+    footer: {
+      textAlign: 'right',
+    }
+  }
 }, {
-  name: 'XYZ',
+  name: 'Column 2',
+  width: 300
 }]
 
 const rows = []
@@ -18,10 +29,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <ERTable columns={columns} rows={rows} rowHeight={30} lines={15}/>
+        <ERTable columns={columns} rows={rows} rowHeight={30} lines={15} header={true} footer={true}/>
       </header>
     </div>
   );
